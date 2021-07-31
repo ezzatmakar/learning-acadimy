@@ -7379,3 +7379,15 @@ h6 {
 }
 
 /*# sourceMappingURL=style.css.map */
+.pagination .page-link {
+    padding: 1rem 1.25rem !important;
+    color: #ff663b !important;
+    font-size: 1.25rem !important;
+}
+
+.pagination .page-link:hover,
+.pagination .active .page-link {
+    background-color: #ff663b !important;
+    border-color: #ff663b !important;
+    color: #fff !important;
+}
