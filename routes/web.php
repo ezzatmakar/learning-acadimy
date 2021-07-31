@@ -1,5 +1,7 @@
 <?php
 use App\Http\Controllers\Front\HomepageController;
+use App\Http\Controllers\Front\CourseController;
+
 use Illuminate\Support\Facades\Route;
 /*
 |--------------------------------------------------------------------------
@@ -12,3 +14,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 Route::get('/', [HomepageController::class, 'index'])->name('front.homepage');
+
+Route::get('/cat/{id}', [CourseController::class, 'cat'])->name('front.cat');
+Route::get('/cat/{id}/course/{course_id}', [CourseController::class, 'show'])->name('front.show');

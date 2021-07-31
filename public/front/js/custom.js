@@ -44,7 +44,7 @@
   var review = $('.textimonial_iner');
   if (review.length) {
     review.owlCarousel({
-      items: 1,
+      items: 2,
       loop: true,
       dots: true,
       autoplay: true,
@@ -54,6 +54,7 @@
       responsive: {
         0: {
           margin: 15,
+          items: 1,
         },
         600: {
           margin: 10,
@@ -90,7 +91,7 @@
 //       dots: false,
 //       navText: false,
 //       autoplay: true,
-      
+
 //     });
 //  owl_2.find(".item").click(function(){
 //     var slide_index = owl_2.find(".item").index(this);
@@ -108,9 +109,9 @@
 //       autoplay: true,
 //       center: true
 //     });
-    
+
 //   });
- 
+
 
 $('.counter').counterUp({
   time: 2000
@@ -127,7 +128,7 @@ $('.counter').counterUp({
     pauseOnFocus: true,
     dots: true,
   });
- 
+
   $('.slider-nav-thumbnails').slick({
     slidesToShow: 3,
     slidesToScroll: 1,
@@ -146,26 +147,26 @@ $('.counter').counterUp({
       }
     ]
   });
- 
+
   //remove active class from all thumbnail slides
   $('.slider-nav-thumbnails .slick-slide').removeClass('slick-active');
- 
+
   //set active class to first thumbnail slides
   $('.slider-nav-thumbnails .slick-slide').eq(0).addClass('slick-active');
- 
+
   // On before slide change match active thumbnail to current slide
   $('.slider').on('beforeChange', function (event, slick, currentSlide, nextSlide) {
     var mySlideNumber = nextSlide;
     $('.slider-nav-thumbnails .slick-slide').removeClass('slick-active');
     $('.slider-nav-thumbnails .slick-slide').eq(mySlideNumber).addClass('slick-active');
  });
- 
- //UPDATED 
-   
- $('.slider').on('afterChange', function(event, slick, currentSlide){   
+
+ //UPDATED
+
+ $('.slider').on('afterChange', function(event, slick, currentSlide){
    $('.content').hide();
    $('.content[data-id=' + (currentSlide + 1) + ']').show();
- }); 
+ });
 
  $('.gallery_img').magnificPopup({
   type: 'image',
