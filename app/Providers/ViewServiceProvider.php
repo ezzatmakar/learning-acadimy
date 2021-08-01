@@ -24,6 +24,7 @@ class ViewServiceProvider extends ServiceProvider
         view()->composer('front.inc.footer', function ($view){
             $view->with('sett', Settings::first());
         });
+
     }
 
     /**

@@ -1,7 +1,9 @@
 <?php
-use App\Http\Controllers\Front\HomepageController;
-use App\Http\Controllers\Front\CourseController;
 
+
+use App\Http\Controllers\Front\ContactController;
+use App\Http\Controllers\Front\CourseController;
+use App\Http\Controllers\Front\HomepageController;
 use Illuminate\Support\Facades\Route;
 /*
 |--------------------------------------------------------------------------
@@ -13,7 +15,10 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get('/', [HomepageController::class, 'index'])->name('front.homepage');
+Route::namespace('Front')->group(function (){
+    Route::get('/', [HomepageController::class, 'index'])->name('front.homepage');
+    Route::get('/cat/{id}', [CourseController::class, 'cat'])->name('front.cat');
+    Route::get('/cat/{id}/course/{course_id}', [CourseController::class, 'show'])->name('front.show');
+    Route::get('/contact', [ContactController::class, 'index'])->name('front.contact');
+});
 
-Route::get('/cat/{id}', [CourseController::class, 'cat'])->name('front.cat');
-Route::get('/cat/{id}/course/{course_id}', [CourseController::class, 'show'])->name('front.show');
