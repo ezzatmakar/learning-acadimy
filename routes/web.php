@@ -4,6 +4,7 @@
 use App\Http\Controllers\Front\ContactController;
 use App\Http\Controllers\Front\CourseController;
 use App\Http\Controllers\Front\HomepageController;
+use App\Http\Controllers\Front\MessageController;
 use Illuminate\Support\Facades\Route;
 /*
 |--------------------------------------------------------------------------
@@ -20,5 +21,6 @@ Route::namespace('Front')->group(function (){
     Route::get('/cat/{id}', [CourseController::class, 'cat'])->name('front.cat');
     Route::get('/cat/{id}/course/{course_id}', [CourseController::class, 'show'])->name('front.show');
     Route::get('/contact', [ContactController::class, 'index'])->name('front.contact');
+    Route::post('/message/newsletter', [MessageController::class, 'newsletter'])->name('front.message.newsletter');
 });
 
