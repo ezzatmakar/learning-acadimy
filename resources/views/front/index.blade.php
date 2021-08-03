@@ -214,7 +214,4 @@
         </div>
     </section>
     <!--::blog_part end::-->
-
-
-
 @endsection

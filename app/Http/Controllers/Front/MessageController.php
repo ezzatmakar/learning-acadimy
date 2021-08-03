@@ -14,7 +14,9 @@ class MessageController extends Controller
             'email' => 'required|email|max:191'
         ]);
 
-        NewsLetter::create($data);
+        $newsletterInserted = NewsLetter::create($data);
+
+
         return back();
     }
 }

@@ -4,8 +4,8 @@
         <div class="row justify-content-between">
             <div class="col-sm-6 col-md-4 col-xl-3">
                 <div class="single-footer-widget footer_1">
-                    <a href="{{ route('front.homepage') }}"> <img src="{{ asset('uploads/settings/' . $sett->logo) }}"
-                            alt=""> </a>
+                    <a href="{{ route('front.homepage') }}"> <img
+                            src="{{ asset('uploads/settings/' . $sett->logo) }}" alt=""> </a>
                     <p>But when shot real her. Chamber her one visite removal six
                         sending himself boys scot exquisite existend an </p>
                     <p>But when shot real her hamber her </p>
@@ -16,14 +16,15 @@
                     <h4>Newsletter</h4>
                     <p>Stay updated with our latest trends Seed heaven so said place winged over given forth fruit.
                     </p>
-                    <form action="{{route('front.message.newsletter')}}" method="post">
-                        @csrf
+                    <form action="{{ route('front.message.newsletter') }}" method="post">
+                        <input type="hidden" name="_token" id="csrf" value="{{Session::token()}}">
+
                         <div class="form-group">
                             <div class="input-group mb-3">
                                 <input type="email" name="email" class="form-control" placeholder='Enter email address'
                                     onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter email address'">
                                 <div class="input-group-append">
-                                    <button class="btn btn_1" type="submit"><i class="ti-angle-right"></i></button>
+                                    <button id="saveBtn" class="btn btn_1" type="submit"><i class="ti-angle-right"></i></button>
                                 </div>
                             </div>
                         </div>
@@ -61,8 +62,8 @@
                                 <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
                                 <script>
                                     document.write(new Date().getFullYear());
-                                </script> All rights reserved | This template is made with <i
-                                    class="ti-heart" aria-hidden="true"></i> by <a href="https://colorlib.com"
+                                </script> All rights reserved | This template is made with <i class="ti-heart"
+                                    aria-hidden="true"></i> by <a href="https://colorlib.com"
                                     target="_blank">Colorlib</a>
                                 <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
                             </p>
@@ -74,31 +75,9 @@
     </div>
 </footer>
 <!-- footer part end-->
+@include('front.inc.jsScripts')
 
-<!-- jquery plugins here-->
-<!-- jquery -->
-<script src="{{ asset('/front/js') }}/jquery-1.12.1.min.js"></script>
-<!-- popper js -->
-<script src="{{ asset('/front/js') }}/popper.min.js"></script>
-<!-- bootstrap js -->
-<script src="{{ asset('/front/js') }}/bootstrap.min.js"></script>
-<!-- easing js -->
-<script src="{{ asset('/front/js') }}/jquery.magnific-popup.js"></script>
-<!-- swiper js -->
-<script src="{{ asset('/front/js') }}/swiper.min.js"></script>
-<!-- swiper js -->
-<script src="{{ asset('/front/js') }}/masonry.pkgd.js"></script>
-<!-- particles js -->
-<script src="{{ asset('/front/js') }}/owl.carousel.min.js"></script>
-<script src="{{ asset('/front/js') }}/jquery.nice-select.min.js"></script>
-<!-- swiper js -->
-<script src="{{ asset('/front/js') }}/slick.min.js"></script>
-<script src="{{ asset('/front/js') }}/jquery.counterup.min.js"></script>
-<script src="{{ asset('/front/js') }}/waypoints.min.js"></script>
-<!-- custom js -->
-<script src="{{ asset('/front/js') }}/custom.js"></script>
 
-@yield('scripts')
 </body>
 
 </html>
