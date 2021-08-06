@@ -4,10 +4,10 @@ namespace App\Http\Controllers\Front;
 
 use App\Course;
 use App\Http\Controllers\Controller;
-use App\Student;
 use Illuminate\Http\Request;
 use App\NewsLetter;
 use App\Message;
+use App\Student;
 use Illuminate\Support\Facades\DB;
 
 class MessageController extends Controller
