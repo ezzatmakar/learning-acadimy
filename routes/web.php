@@ -1,6 +1,4 @@
 <?php
-
-
 use App\Http\Controllers\Front\ContactController;
 use App\Http\Controllers\Front\CourseController;
 use App\Http\Controllers\Front\HomepageController;
@@ -23,5 +21,6 @@ Route::namespace('Front')->group(function (){
     Route::get('/contact', [ContactController::class, 'index'])->name('front.contact');
     Route::post('/message/newsletter', [MessageController::class, 'newsletter'])->name('front.message.newsletter');
     Route::post('/message/contact', [MessageController::class, 'contactUsForm'])->name('front.message.contact');
+	Route::post('/message/enroll', [MessageController::class, 'enroll'])->name('front.message.enroll');
 
 });
