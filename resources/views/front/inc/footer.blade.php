@@ -17,14 +17,13 @@
                     <p>Stay updated with our latest trends Seed heaven so said place winged over given forth fruit.
                     </p>
                     <form action="{{ route('front.message.newsletter') }}" method="post">
-                        <input type="hidden" name="_token" id="csrf" value="{{Session::token()}}">
-
+                        @csrf
                         <div class="form-group">
                             <div class="input-group mb-3">
                                 <input type="email" name="email" class="form-control" placeholder='Enter email address'
                                     onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter email address'">
                                 <div class="input-group-append">
-                                    <button id="saveBtn" class="btn btn_1" type="submit"><i class="ti-angle-right"></i></button>
+                                    <button class="btn btn_1" type="submit"><i class="ti-angle-right"></i></button>
                                 </div>
                             </div>
                         </div>
@@ -59,13 +58,10 @@
                     <div class="row">
                         <div class="col-lg-12">
                             <p class="footer-text m-0">
-                                <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-                                <script>
-                                    document.write(new Date().getFullYear());
-                                </script> All rights reserved | This template is made with <i class="ti-heart"
+	                            <?php echo date("Y"); ?>
+                                All rights reserved | This template is made with <i class="ti-heart"
                                     aria-hidden="true"></i> by <a href="https://colorlib.com"
-                                    target="_blank">Colorlib</a>
-                                <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                                    target="_blank">{{ "Ezzat Makar" }}</a>
                             </p>
                         </div>
                     </div>
@@ -76,8 +72,3 @@
 </footer>
 <!-- footer part end-->
 @include('front.inc.jsScripts')
-
-
-</body>
-
-</html>

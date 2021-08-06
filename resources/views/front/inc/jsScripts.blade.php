@@ -20,3 +20,9 @@
 <script src="{{ asset('/front/js') }}/waypoints.min.js"></script>
 <!-- custom js -->
 <script src="{{ asset('/front/js') }}/custom.js"></script>
+
+
+</body>
+
+</html>
+
