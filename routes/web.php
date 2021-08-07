@@ -1,4 +1,7 @@
 <?php
+
+use App\Http\Controllers\Admin\AuthController;
+use App\Http\Controllers\Admin\HomeController;
 use App\Http\Controllers\Front\ContactController;
 use App\Http\Controllers\Front\CourseController;
 use App\Http\Controllers\Front\HomepageController;
@@ -22,5 +25,10 @@ Route::namespace('Front')->group(function (){
     Route::post('/message/newsletter', [MessageController::class, 'newsletter'])->name('front.message.newsletter');
     Route::post('/message/contact', [MessageController::class, 'contactUsForm'])->name('front.message.contact');
 	Route::post('/message/enroll', [MessageController::class, 'enroll'])->name('front.message.enroll');
+});
 
+Route::namespace('Admin')->prefix('dashboard')->group(function (){
+	Route::get('/login', [AuthController::class, 'login'])->name('admin.login');
+
+	Route::get('/', [HomeController::class, 'index'])->name('admin.homepage');
 });
