@@ -1,0 +1,17 @@
+html,
+body {
+    height: 100%;
+}
+main .fill {
+    height: 70vw;
+    min-height: 100%;
+}
+.navbar-brand img {
+    background: #fff;
+    padding: 5px 5px;
+}
+footer {
+    padding: 2rem 0;
+    background-color: #000;
+    color: #fff;
+}

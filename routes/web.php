@@ -29,6 +29,9 @@ Route::namespace('Front')->group(function (){
 
 Route::namespace('Admin')->prefix('dashboard')->group(function (){
 	Route::get('/login', [AuthController::class, 'login'])->name('admin.login');
+	Route::post('/login', [AuthController::class, 'doLogin'])->name('admin.doLogin');
 
+
+	Route::get('/logout', [AuthController::class, 'logout'])->name('admin.logout');
 	Route::get('/', [HomeController::class, 'index'])->name('admin.homepage');
 });
