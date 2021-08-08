@@ -17,21 +17,27 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::namespace('Front')->group(function (){
+
+// All Front routes
+Route::namespace('Front')->group(function () {
     Route::get('/', [HomepageController::class, 'index'])->name('front.homepage');
     Route::get('/cat/{id}', [CourseController::class, 'cat'])->name('front.cat');
     Route::get('/cat/{id}/course/{course_id}', [CourseController::class, 'show'])->name('front.show');
     Route::get('/contact', [ContactController::class, 'index'])->name('front.contact');
     Route::post('/message/newsletter', [MessageController::class, 'newsletter'])->name('front.message.newsletter');
     Route::post('/message/contact', [MessageController::class, 'contactUsForm'])->name('front.message.contact');
-	Route::post('/message/enroll', [MessageController::class, 'enroll'])->name('front.message.enroll');
+    Route::post('/message/enroll', [MessageController::class, 'enroll'])->name('front.message.enroll');
 });
 
-Route::namespace('Admin')->prefix('dashboard')->group(function (){
-	Route::get('/login', [AuthController::class, 'login'])->name('admin.login');
-	Route::post('/login', [AuthController::class, 'doLogin'])->name('admin.doLogin');
+// dashboard routes
+Route::namespace('Admin')->prefix('dashboard')->group(function () {
+    // dashboard routes `login and logout routes`
+    Route::get('/login', [AuthController::class, 'login'])->name('admin.login');
+    Route::post('/login', [AuthController::class, 'doLogin'])->name('admin.doLogin');
 
-
-	Route::get('/logout', [AuthController::class, 'logout'])->name('admin.logout');
-	Route::get('/', [HomeController::class, 'index'])->name('admin.homepage');
+    // All Admin dashboard routes
+    Route::middleware('adminAuth:admin')->group(function () {
+        Route::get('/logout', [AuthController::class, 'logout'])->name('admin.logout');
+        Route::get('/', [HomeController::class, 'index'])->name('admin.homepage');
+    });
 });

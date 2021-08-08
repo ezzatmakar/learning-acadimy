@@ -41,10 +41,10 @@ return [
             'provider' => 'users',
         ],
 
-	    'admin' => [
-		    'driver' => 'session',
-		    'provider' => 'admins',
-	    ],
+        'admin' => [
+            'driver' => 'session',
+            'provider' => 'admins',
+        ],
 
         'api' => [
             'driver' => 'token',
@@ -76,10 +76,10 @@ return [
             'model' => App\User::class,
         ],
 
-	    'admins' => [
-		    'driver' => 'eloquent',
-		    'model' => App\Admin::class,
-	    ],
+        'admins' => [
+            'driver' => 'eloquent',
+            'model' => App\Admin::class,
+        ],
 
         // 'users' => [
         //     'driver' => 'database',
@@ -110,10 +110,11 @@ return [
             'throttle' => 60,
         ],
 
-	    'admins' => [
-		    'provider' => 'admins',
-		    'expire' => 60,
-	    ],
+        'admins' => [
+            'provider' => 'admins',
+            'table' => 'admins',
+            'expire' => 900,
+        ],
     ],
 
     /*
