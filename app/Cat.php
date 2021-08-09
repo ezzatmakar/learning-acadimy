@@ -3,18 +3,24 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
+/**
+ * @method static create(array $data)
+ * @method static findOrFail(mixed $id)
+ */
 class Cat extends Model
 {
     protected $guarded = ['id'];
 
-    public function courses(): \Illuminate\Database\Eloquent\Relations\HasMany
+    public function courses(): HasMany
     {
-        return $this->hasMany('App\Course');
+        return $this->hasMany(Course::class);
     }
 
-    public function trainer(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    public function trainer(): BelongsTo
     {
-        return $this->belongsTo('App\Trainer');
+        return $this->belongsTo(Trainer::class);
     }
 }

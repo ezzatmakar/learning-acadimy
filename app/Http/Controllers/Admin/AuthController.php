@@ -23,7 +23,7 @@ class AuthController extends Controller
 		if (!$attempt_data) {
 			return redirect()->back();
 		}
-        return redirect(route('admin.homepage'));
+		return redirect(route('admin.homepage'));
 	}
 
 	public function logout()

@@ -45,11 +45,10 @@
     </header>
     <main class="h-100 align-middle d-block">
 
-        <div class="container py-5 px-5">
+        <div class="container py-5 px-5 h-100">
             <div class="row">
                 <div class="col-4">
-                    <ul class="nav nav-tabs flex-column h-100">
-
+                    <ul class="nav flex-column h-100">
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('admin.cats.index') }}">Categories</a>
                         </li>

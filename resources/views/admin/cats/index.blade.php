@@ -2,8 +2,13 @@
 
 @section('content')
 
-    <div class="row justify-content-center">
+    <div class="d-flex justify-content-between mb-3">
+        <h6>Categories</h6>
+        <a href="{{ route('admin.cats.create') }}" class="btn btn-sm btn-primary">Add new</a>
+    </div>
+    <div class="row">
         <div class="col-12">
+
             <table class="table table-hover">
                 <thead class="thead-light">
                     <tr>
@@ -18,16 +23,16 @@
                 <tbody>
                     @foreach ($cats as $c)
                         <tr>
-                            <th scope="row">{{ @$loop->iteration }}</th>
+                            <th scope="row">{{ $loop->iteration }}</th>
                             <td>{{ $c->name }}</td>
+                            <td><a href="{{ route('admin.cats.show', $c->id) }}" class="btn btn-outline-info">view
+                                    category</a></td>
                             <td>
-                                <button type="button" class="btn btn-outline-info">view category</button>
+                                <a href="{{ route('admin.cats.edit', $c->id) }}" class="btn btn-outline-warning">Edit</a>
                             </td>
                             <td>
-                                <button type="button" class="btn btn-outline-warning">Warning</button>
-                            </td>
-                            <td>
-                                <button type="button" class="btn btn-outline-danger">Delete</button>
+                                <a href="{{ route('admin.cats.destroy', $c->id) }}"
+                                    class="btn btn-outline-danger">Delete</a>
                             </td>
                         </tr>
                     @endforeach
