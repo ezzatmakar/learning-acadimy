@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Redirect;
 
 class AuthController extends Controller
 {
@@ -22,10 +21,9 @@ class AuthController extends Controller
 
 		$attempt_data = auth()->guard('admin')->attempt(['email' => $data['email'], 'password' => $data['password']]);
 		if (!$attempt_data) {
-			return redirect()->back()->withErrors($validator);
-		} else {
-			return redirect(route('admin.homepage'));
+			return redirect()->back();
 		}
+        return redirect(route('admin.homepage'));
 	}
 
 	public function logout()
