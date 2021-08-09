@@ -32,7 +32,6 @@
                             <a class="nav-link active" aria-current="page"
                                 href="{{ route('admin.homepage') }}">Home</a>
                         </li>
-
                     </ul>
                     <ul class="navbar-nav ms-auto">
                         <li class="nav-item">
@@ -45,3 +44,20 @@
         </nav>
     </header>
     <main class="h-100 align-middle d-block">
+
+        <div class="container py-5 px-5">
+            <div class="row">
+                <div class="col-4">
+                    <ul class="nav nav-tabs flex-column h-100">
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('admin.cats.index') }}">Categories</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Link</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+                        </li>
+                    </ul>
+                </div>

@@ -1,3 +1,5 @@
 @include('admin.inc.header')
-@yield('content')
+<div class="col-8">
+    @yield('content')
+</div>
 @include('admin.inc.footer')

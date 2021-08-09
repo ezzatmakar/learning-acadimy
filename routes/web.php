@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\AuthController;
+use App\Http\Controllers\Admin\CatController;
 use App\Http\Controllers\Admin\HomeController;
 use App\Http\Controllers\Front\ContactController;
 use App\Http\Controllers\Front\CourseController;
@@ -39,5 +40,6 @@ Route::namespace('Admin')->prefix('dashboard')->group(function () {
     Route::middleware('adminAuth:admin')->group(function () {
         Route::get('/logout', [AuthController::class, 'logout'])->name('admin.logout');
         Route::get('/', [HomeController::class, 'index'])->name('admin.homepage');
+        Route::get('/cats', [CatController::class, 'index'])->name('admin.cats.index');
     });
 });
