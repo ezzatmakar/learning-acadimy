@@ -40,12 +40,26 @@ Route::namespace('Admin')->prefix('dashboard')->group(function () {
     Route::middleware('adminAuth:admin')->group(function () {
         Route::get('/logout', [AuthController::class, 'logout'])->name('admin.logout');
         Route::get('/', [HomeController::class, 'index'])->name('admin.homepage');
-        Route::get('/cats', [CatController::class, 'index'])->name('admin.cats.index');
-        Route::get('/cats/cat/{id}', [CatController::class, 'show'])->name('admin.cats.show');
-        Route::get('/cats/edit/{id}', [CatController::class, 'edit'])->name('admin.cats.edit');
-        Route::post('/cats/update', [CatController::class, 'update'])->name('admin.cats.update');
-        Route::get('/cats/create', [CatController::class, 'create'])->name('admin.cats.create');
-        Route::post('/cats/store', [CatController::class, 'store'])->name('admin.cats.store');
-        Route::get('/cats/destroy/{id}', [CatController::class, 'destroy'])->name('admin.cats.destroy');
+
+        Route::prefix('cats')->group(function (){
+	        Route::get('/', [CatController::class, 'index'])->name('admin.cats.index');
+	        Route::get('/cat/{id}', [CatController::class, 'show'])->name('admin.cats.show');
+	        Route::get('/edit/{id}', [CatController::class, 'edit'])->name('admin.cats.edit');
+	        Route::post('/update', [CatController::class, 'update'])->name('admin.cats.update');
+	        Route::get('/create', [CatController::class, 'create'])->name('admin.cats.create');
+	        Route::post('/store', [CatController::class, 'store'])->name('admin.cats.store');
+	        Route::get('/destroy/{id}', [CatController::class, 'destroy'])->name('admin.cats.destroy');
+        });
+
+	    Route::prefix('trainers')->group(function (){
+		    Route::get('/', [CatController::class, 'index'])->name('admin.trainers.index');
+		    Route::get('/trainer/{id}', [CatController::class, 'show'])->name('admin.trainers.show');
+		    Route::get('/edit/{id}', [CatController::class, 'edit'])->name('admin.trainers.edit');
+		    Route::post('/update', [CatController::class, 'update'])->name('admin.trainers.update');
+		    Route::get('/create', [CatController::class, 'create'])->name('admin.trainers.create');
+		    Route::post('/store', [CatController::class, 'store'])->name('admin.trainers.store');
+		    Route::get('/destroy/{id}', [CatController::class, 'destroy'])->name('admin.trainers.destroy');
+	    });
+
     });
 });

@@ -1,5 +1,7 @@
 </div>
 </div>
+
+</main>
 <footer class="page-footer">
     <div class="container">
         <div class="row">
@@ -11,7 +13,6 @@
         </div>
     </div>
 </footer>
-</main>
 <script src="{{ asset('admin/js/bootstrap.bundle.min.js') }}"></script>
 <script src="{{ asset('admin/js/popper.min.js') }}"></script>
 <script src="{{ asset('admin/js/bootstrap.min.js') }}"></script>

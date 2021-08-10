@@ -40,9 +40,9 @@
             </div>
         </div>
     </nav>
-    <main class="h-100 align-middle d-block">
+    <main class="vh-100 align-middle d-block">
 
-        <div class="container py-5 px-5 h-100">
+        <div class="container py-5 px-5">
             <div class="row">
                 <div class="col-4">
                     <ul class="nav flex-column h-100">
