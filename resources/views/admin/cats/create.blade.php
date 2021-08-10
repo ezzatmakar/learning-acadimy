@@ -9,11 +9,15 @@
     @include('admin.inc.errors')
     <form class="form-inline" method="POST" action="{{ route('admin.cats.store') }}">
         @csrf
-        <div class="form-group mb-2">
-            <label for="nameInput" class="sr-only my-2">Category name</label>
-            <input type="text" id="nameInput" name="name" class="form-control">
+        <div class="d-flex justify-content-between">
+            <label for="name" class="sr-only my-2">Category name</label>
+            <div class="mb-2">
+                <input type="text" id="nameInput" name="name" class="form-control">
+            </div>
+            <div class="mb-2">
+                <button type="submit" class="btn btn-primary">Add</button>
+            </div>
         </div>
-        <button type="submit" class="btn btn-primary">Add</button>
     </form>
 
 @endsection

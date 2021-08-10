@@ -12,7 +12,7 @@
             <table class="table table-hover">
                 <thead class="thead-light">
                     <tr>
-                        <th scope="col">Count</th>
+                        <th scope="col">#</th>
                         <th scope="col">Category name</th>
                         <th scope="col">view</th>
                         <th scope="col">Edit</th>
@@ -25,7 +25,7 @@
                         <tr>
                             <th scope="row">{{ $loop->iteration }}</th>
                             <td>{{ $c->name }}</td>
-                            <td><a href="{{ route('admin.cats.show', $c->id) }}" class="btn btn-outline-info">view
+                            <td><a href="{{ route('admin.cats.show', $c->id) }}" class="btn btn-outline-primary">view
                                     category</a></td>
                             <td>
                                 <a href="{{ route('admin.cats.edit', $c->id) }}" class="btn btn-outline-warning">Edit</a>
