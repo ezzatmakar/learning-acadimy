@@ -15,34 +15,31 @@
 
 <body>
 
-    <header>
-        <nav class="navbar navbar-expand-md navbar-dark sticky-top bg-dark">
-            <div class="container">
-                <a class="navbar-brand">
-                    <img src="{{ asset('uploads/settings/logo.png') }}" width="auto" height="40px" alt=""
-                        class="d-inline-block align-text-middle">
-                </a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse"
-                    aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse ml ls-5 ps-5" id="navbarCollapse">
-                    <ul class="navbar-nav mr-auto">
-                        <li class="nav-item">
-                            <a class="nav-link active" aria-current="page"
-                                href="{{ route('admin.homepage') }}">Home</a>
-                        </li>
-                    </ul>
-                    <ul class="navbar-nav ms-auto">
-                        <li class="nav-item">
-                            <a class="btn btn-outline-danger px-4" aria-current="page"
-                                href="{{ route('admin.logout') }}"><i class="bi bi-box-arrow-right"></i> Logout</a>
-                        </li>
-                    </ul>
-                </div>
+    <nav class="navbar navbar-expand-md navbar-dark sticky-top bg-dark">
+        <div class="container">
+            <a class="navbar-brand">
+                <img src="{{ asset('uploads/settings/logo.png') }}" width="auto" height="40px" alt=""
+                    class="d-inline-block align-text-middle">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse"
+                aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse ml ls-5 ps-5" id="navbarCollapse">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="{{ route('admin.homepage') }}">Home</a>
+                    </li>
+                </ul>
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="btn btn-outline-danger px-4" aria-current="page"
+                            href="{{ route('admin.logout') }}"><i class="bi bi-box-arrow-right"></i> Logout</a>
+                    </li>
+                </ul>
             </div>
-        </nav>
-    </header>
+        </div>
+    </nav>
     <main class="h-100 align-middle d-block">
 
         <div class="container py-5 px-5 h-100">
