@@ -8,7 +8,9 @@ use Illuminate\Contracts\View\Factory;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use App\Trainer;
+use Illuminate\Routing\Redirector;
 use Illuminate\View\View;
+use Image;
 
 class TrainerController extends Controller
 {
@@ -37,13 +39,18 @@ class TrainerController extends Controller
 	 * Store a newly created resource in storage.
 	 *
 	 * @param Request $request
-	 * @return Application
+	 * @return Application|Redirector|RedirectResponse
 	 */
-	public function store(Request $request): Application
+	public function store(Request $request)
 	{
 		$data = $request->validate([
-			'name' => 'required|string|max:20'
+			'name' => 'required|string|max:50',
+			'spec' => 'required|string|max:50',
+			'phone' => 'nullable|string|max:20',
+			'img' => 'required|image|mimes:png,jpeg,jpg'
 		]);
+		$image = $data['img']->hashName();
+		Image::make($data['img'])->save(base_path() . '/public/uploads/trainers/' . $image);;
 
 		Trainer::create($data);
 		return redirect(route('admin.trainers.index'));
