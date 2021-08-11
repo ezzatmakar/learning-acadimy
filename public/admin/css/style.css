@@ -15,6 +15,18 @@ main .fill {
     text-transform: capitalize;
 }
 
+.badge {
+    display: inline-block;
+    font-size: 1em;
+    font-weight: 700;
+    line-height: 1;
+    color: #000;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: baseline;
+    border-radius: 0.25rem;
+}
+
 footer {
     padding: 2rem 0;
     background-color: #000;

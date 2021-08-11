@@ -7,7 +7,7 @@
         <a href="{{ route('admin.cats.index') }}" class="btn btn-sm btn-primary">Back</a>
     </div>
     @include('admin.inc.errors')
-    <form class="form-inline" method="POST" action="{{ route('admin.cats.update' ) }}">
+    <form class="form-inline" method="POST" action="{{ route('admin.cats.update') }}">
         @csrf
         <input type="hidden" name="id" value="{{ $cat->id }}">
         <div class="d-flex justify-content-between">

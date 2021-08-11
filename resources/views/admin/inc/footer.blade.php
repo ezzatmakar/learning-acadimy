@@ -1,5 +1,4 @@
 </div>
-</div>
 
 </main>
 <footer class="page-footer">

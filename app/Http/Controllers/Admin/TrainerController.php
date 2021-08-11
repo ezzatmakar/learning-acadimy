@@ -5,10 +5,10 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use App\Trainer;
 use Illuminate\View\View;
-use Intervention\Image;
 
 class TrainerController extends Controller
 {
@@ -19,7 +19,7 @@ class TrainerController extends Controller
 	 */
 	public function index()
 	{
-		$data['cats'] = Trainer::all()->sortByDesc('id');
+		$data['trainers'] = Trainer::all()->sortByDesc('id');
 		return view('admin.trainers.index')->with($data);
 	}
 
@@ -55,9 +55,9 @@ class TrainerController extends Controller
 	 * @param  int id
 	 * @return Application|Factory|View
 	 */
-	public function show($cat_id)
+	public function show($trainer_id)
 	{
-		$data['cat'] = Trainer::findOrFail($cat_id);
+		$data['trainer'] = Trainer::findOrFail($trainer_id);
 		return view('admin.trainers.show')->with($data);
 	}
 

@@ -3,23 +3,25 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Course extends Model
 {
     protected $guarded = ['id'];
 
-    public function cat(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    public function cat(): BelongsTo
     {
-        return $this->belongsTo('App\Cat');
+        return $this->belongsTo(Cat::class);
     }
 
-    public function trainer(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    public function trainer(): BelongsTo
     {
-        return $this->belongsTo('App\Trainer');
+        return $this->belongsTo(Trainer::class);
     }
 
-    public function students(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
+    public function students(): BelongsToMany
     {
-        return $this->belongsToMany('App\Student');
+        return $this->belongsToMany(Student::class);
     }
 }
