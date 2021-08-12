@@ -10,7 +10,7 @@ use Illuminate\Http\Request;
 use App\Trainer;
 use Illuminate\Routing\Redirector;
 use Illuminate\View\View;
-use Image;
+Use Image;
 
 class TrainerController extends Controller
 {
@@ -50,8 +50,8 @@ class TrainerController extends Controller
 			'img' => 'required|image|mimes:png,jpeg,jpg'
 		]);
 		$image = $data['img']->hashName();
-		Image::make($data['img'])->save(base_path() . '/public/uploads/trainers/' . $image);;
-
+		Image::make($data['img'])->resize(70, 70)->save(base_path() . '/public/uploads/trainers/' . $image);;
+		$data['img'] = $image;
 		Trainer::create($data);
 		return redirect(route('admin.trainers.index'));
 	}
@@ -89,9 +89,18 @@ class TrainerController extends Controller
 	 */
 	public function update(Request $request): RedirectResponse
 	{
+
 		$data = $request->validate([
-			'name' => 'required|string|max:20'
+            'name' => 'required|string|max:50',
+            'spec' => 'required|string|max:50',
+            'phone' => 'nullable|string|max:20',
+            'img' => 'nullable|image|mimes:png,jpeg,jpg'
 		]);
+
+
+        $image = $data['img']->hashName();
+        Image::make($data['img'])->resize(60, 60)->save(base_path() . '/public/uploads/trainers/' . $image);;
+        $data['img'] = $image;
 
 		Trainer::findOrFail($request->id)->update($data);
 		return back();
