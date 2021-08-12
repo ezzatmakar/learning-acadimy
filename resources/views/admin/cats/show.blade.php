@@ -5,7 +5,10 @@
     <div style="height: 65vh;">
         <div class="d-flex justify-content-between mb-3">
             <h6 class="cat-name">{{ $cat->name }}</h6>
-            <a href="{{ route('admin.cats.index') }}" class="btn btn-sm btn-primary">Back</a>
+            <div class="actions">
+                <a href="{{ route('admin.cats.index') }}" class="btn btn-lg btn-primary">Back</a>
+                <a href="{{ route('admin.cats.edit', $cat->id) }}" class="btn btn-lg btn-outline-warning ms-3">Edit</a>
+            </div>
         </div>
 
         <div class="row">

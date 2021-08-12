@@ -2,9 +2,12 @@
 
 @section('content')
     <div class="vh-100">
-        <div class="d-flex justify-content-between mb-3">
+        <div class="d-flex justify-content-between mb-5">
             <h6 class="cat-name">{{ $course->name }}</h6>
-            <a href="{{ route('admin.courses.index') }}" class="btn btn-sm btn-primary">Back</a>
+            <div class="actions">
+                <a href="{{ route('admin.courses.index') }}" class="btn btn-lg btn-primary">Back</a>
+                <a href="{{ route('admin.courses.edit', $course->id) }}" class="btn btn-lg btn-outline-warning ms-3">Edit</a>
+            </div>
         </div>
         <div class="row">
             <div class="col-3 pb-5 mb-3">
