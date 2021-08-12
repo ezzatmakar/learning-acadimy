@@ -4,7 +4,7 @@
 
     <div class="d-flex justify-content-between mb-3">
         <h6>Edit {{$trainer->name }}</h6>
-        <a href="{{ route('admin.trainers.index', $trainer->id) }}" class="btn btn-sm btn-primary">Back</a>
+        <a href="{{ route('admin.trainers.index') }}" class="btn btn-sm btn-primary">Back</a>
     </div>
     @include('admin.inc.errors')
     <form method="POST" action="{{ route('admin.trainers.update') }}" enctype="multipart/form-data">

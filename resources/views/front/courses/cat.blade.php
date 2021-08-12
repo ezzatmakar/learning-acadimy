@@ -24,44 +24,49 @@
             <div class="row justify-content-center">
                 <div class="col-xl-5">
                     <div class="section_tittle text-center">
-                        <p>popular courses</p>
-                        <h2>Special Courses</h2>
+                        <h2>{{ $cat->name }}</h2>
                     </div>
                 </div>
             </div>
-            <div class="row">
+            @if(count($courses) > 0)
+                <div class="row">
 
-                @foreach ($courses as $c)
+                    @foreach ($courses as $c)
 
-                    <div class="col-sm-6 col-lg-4 mb-4">
-                        <div class="single_special_cource">
-                            <img src="{{ asset('uploads/courses/'.$c->img) }}" class="special_img" alt="">
-                            <div class="special_cource_text">
-                                <a href="{{route('front.cat', $c->cat->id)}}" class="btn_4">{{$c->cat->name}}</a>
-                                <h4>${{$c->price}}</h4>
-                                <a href="{{route('front.show', [$c->cat->id, $c->id])}}">
-                                    <h3>{{$c->name}}</h3>
-                                </a>
-                                <p>{{$c->small_desc}}</p>
-                                <div class="author_info">
-                                    <div class="author_img">
-                                        <img src="{{ asset('uploads/trainers/'.$c->trainer->img) }}" alt="">
-                                        <div class="author_info_text">
-                                            <p>Conduct by:</p>
-                                            <h5>{{$c->trainer->name}}</h5>
+                        <div class="col-sm-6 col-lg-4 mb-4">
+                            <div class="single_special_cource">
+                                <img src="{{ asset('uploads/courses/'.$c->img) }}" class="special_img" alt="">
+                                <div class="special_cource_text">
+                                    <a href="{{route('front.cat', $c->cat->id)}}" class="btn_4">{{$c->cat->name}}</a>
+                                    <h4>${{$c->price}}</h4>
+                                    <a href="{{route('front.show', [$c->cat->id, $c->id])}}">
+                                        <h3>{{$c->name}}</h3>
+                                    </a>
+                                    <p>{{$c->small_desc}}</p>
+                                    <div class="author_info">
+                                        <div class="author_img">
+                                            <img src="{{ asset('uploads/trainers/'.$c->trainer->img) }}" alt="">
+                                            <div class="author_info_text">
+                                                <p>Conduct by:</p>
+                                                <h5>{{$c->trainer->name}}</h5>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
+
                             </div>
-
                         </div>
-                    </div>
-                @endforeach
+                    @endforeach
 
-            </div>
-            <div class="d-flex justify-content-center w-100 my-4">
-                {!! $courses->render() !!}
-            </div>
+                </div>
+                <div class="d-flex justify-content-center w-100 my-4">
+                    {!! $courses->render() !!}
+                </div>
+            @else
+                <div class="d-flex justify-content-center w-100 my-4">
+                    No courses in {{ $cat->name }}
+                </div>
+            @endif
         </div>
     </section>
 

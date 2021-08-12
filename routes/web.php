@@ -1,9 +1,6 @@
 <?php
-
-use App\Http\Controllers\Admin\AuthController;
-use App\Http\Controllers\Admin\CatController;
-use App\Http\Controllers\Admin\TrainerController;
-use App\Http\Controllers\Admin\HomeController;
+namespace App\Http\Controllers\Front;
+namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Front\ContactController;
 use App\Http\Controllers\Front\CourseController;
 use App\Http\Controllers\Front\HomepageController;
@@ -60,6 +57,16 @@ Route::namespace('Admin')->prefix('dashboard')->group(function () {
             Route::get('/create', [TrainerController::class, 'create'])->name('admin.trainers.create');
             Route::post('/store', [TrainerController::class, 'store'])->name('admin.trainers.store');
             Route::get('/destroy/{id}', [TrainerController::class, 'destroy'])->name('admin.trainers.destroy');
+        });
+
+        Route::prefix('courses')->group(function () {
+            Route::get('/', [\App\Http\Controllers\Admin\CourseController::class, 'index'])->name('admin.courses.index');
+            Route::get('/course/{id}', [\App\Http\Controllers\Admin\CourseController::class, 'show'])->name('admin.courses.show');
+            Route::get('/edit/{id}', [\App\Http\Controllers\Admin\CourseController::class, 'edit'])->name('admin.courses.edit');
+            Route::post('/update', [\App\Http\Controllers\Admin\CourseController::class, 'update'])->name('admin.courses.update');
+            Route::get('/create', [\App\Http\Controllers\Admin\CourseController::class, 'create'])->name('admin.courses.create');
+            Route::post('/store', [\App\Http\Controllers\Admin\CourseController::class, 'store'])->name('admin.courses.store');
+            Route::get('/destroy/{id}', [\App\Http\Controllers\Admin\CourseController::class, 'destroy'])->name('admin.courses.destroy');
         });
     });
 });

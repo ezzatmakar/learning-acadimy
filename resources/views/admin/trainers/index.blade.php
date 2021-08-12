@@ -26,7 +26,7 @@
                             <tr>
                                 <td scope="row">{{ $loop->iteration }}</td>
                                 <td scope="row">
-                                    <img src="{{ asset('uploads/trainers') . '/' . $trainer->img }}"  alt="">
+                                    <img src="{{ asset('uploads/trainers/'. $trainer->img) }}"  alt="">
                                 </td>
                                 <td scope="row">{{ $trainer->name }}</td>
                                 <td scope="row"><a href="{{ route('admin.trainers.show', $trainer->id) }}"

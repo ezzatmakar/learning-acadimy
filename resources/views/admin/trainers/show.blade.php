@@ -4,10 +4,13 @@
     <div class="vh-100">
         <div class="d-flex justify-content-between mb-3">
             <h6 class="cat-name">{{ $trainer->name }}</h6>
-            <a href="{{ route('admin.cats.index') }}" class="btn btn-sm btn-primary">Back</a>
+            <div class="actions">
+                <a href="{{ route('admin.trainers.index') }}" class="btn btn-lg btn-primary me-3">Back</a>
+                <a href="{{ route('admin.trainers.edit', $trainer->id) }}" class="btn btn-lg btn-outline-warning ms-3">Edit</a>
+            </div>
         </div>
-        <div class="d-flex justify-content-md-center mb-3">
-            <img src="{{ asset('uploads/trainers') . '/' . $trainer->img }}" class="img-fluid"
+        <div class="d-flex justify-content-start mb-3">
+            <img src="{{ asset('uploads/trainers/'.$trainer->img) }}" class="img-fluid"
                 alt="{{ $trainer->name }}">
         </div>
         <div class="row">

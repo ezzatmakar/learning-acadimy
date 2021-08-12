@@ -38,6 +38,10 @@
                         <a class="nav-link active" aria-current="page"
                             href="{{ route('admin.trainers.index') }}">Trainers</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page"
+                           href="{{ route('admin.courses.index') }}">Courses</a>
+                    </li>
                 </ul>
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item">

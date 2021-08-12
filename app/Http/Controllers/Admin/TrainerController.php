@@ -9,6 +9,7 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use App\Trainer;
 use Illuminate\Routing\Redirector;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\View\View;
 Use Image;
 
@@ -50,7 +51,7 @@ class TrainerController extends Controller
 			'img' => 'required|image|mimes:png,jpeg,jpg'
 		]);
 		$image = $data['img']->hashName();
-		Image::make($data['img'])->resize(70, 70)->save(base_path() . '/public/uploads/trainers/' . $image);;
+		Image::make($data['img'])->resize(70, 70)->save(public_path('uploads/trainers/' . $image));
 		$data['img'] = $image;
 		Trainer::create($data);
 		return redirect(route('admin.trainers.index'));
@@ -76,7 +77,7 @@ class TrainerController extends Controller
 	 */
 	public function edit(int $id)
 	{
-		$data['cat'] = Trainer::findOrFail($id);
+		$data['trainer'] = Trainer::findOrFail($id);
 		return view('admin.trainers.edit')->with($data);
 	}
 
@@ -97,10 +98,16 @@ class TrainerController extends Controller
             'img' => 'nullable|image|mimes:png,jpeg,jpg'
 		]);
 
+		$oldImage = Trainer::findOrFail($request->id)->img;
+		if($request->hasFile('img')){
+            Storage::disk('uploads')->delete('trainers/'.$oldImage);
 
-        $image = $data['img']->hashName();
-        Image::make($data['img'])->resize(60, 60)->save(base_path() . '/public/uploads/trainers/' . $image);;
-        $data['img'] = $image;
+            $image = $data['img']->hashName();
+            Image::make($data['img'])->resize(70, 70)->save(public_path('uploads/trainers/' . $image));;
+            $data['img'] = $image;
+        }else{
+		    $data['img'] = $oldImage;
+        }
 
 		Trainer::findOrFail($request->id)->update($data);
 		return back();
@@ -114,6 +121,8 @@ class TrainerController extends Controller
 	 */
 	public function destroy(Request $request): RedirectResponse
 	{
+        $oldImage = Trainer::findOrFail($request->id)->img;
+        Storage::disk('uploads')->delete('trainers/'.$oldImage);
 		Trainer::findOrFail($request->id)->delete();
 		return back();
 	}
