@@ -53,7 +53,7 @@ class StudentController extends Controller
      */
     public function show($cat_id)
     {
-        $data['cat'] = Student::findOrFail($cat_id);
+        $data['student'] = Student::findOrFail($student_id);
         return view('admin.students.show')->with($data);
     }
 
@@ -65,7 +65,7 @@ class StudentController extends Controller
      */
     public function edit(int $id)
     {
-        $data['cat'] = Student::findOrFail($id);
+        $data['student'] = Student::findOrFail($id);
         return view('admin.students.edit')->with($data);
     }
 

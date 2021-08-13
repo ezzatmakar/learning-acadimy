@@ -73,13 +73,14 @@ Route::namespace('Admin')->prefix('dashboard')->group(function () {
         });
 
         Route::prefix('students')->group(function () {
-            Route::get('/', [\App\Http\Controllers\Admin\StudentController::class, 'index'])->name('admin.students.index');
-            Route::get('/course/{id}', [\App\Http\Controllers\Admin\StudentController::class, 'show'])->name('admin.students.show');
-            Route::get('/edit/{id}', [\App\Http\Controllers\Admin\StudentController::class, 'edit'])->name('admin.students.edit');
-            Route::post('/update', [\App\Http\Controllers\Admin\StudentController::class, 'update'])->name('admin.students.update');
-            Route::get('/create', [\App\Http\Controllers\Admin\StudentController::class, 'create'])->name('admin.students.create');
-            Route::post('/store', [\App\Http\Controllers\Admin\StudentController::class, 'store'])->name('admin.students.store');
-            Route::get('/destroy/{id}', [\App\Http\Controllers\Admin\StudentController::class, 'destroy'])->name('admin.students.destroy');
+            Route::get('/', [StudentController::class, 'index'])->name('admin.students.index');
+            Route::get('/student/{id}', [StudentController::class, 'show'])->name('admin.students.show');
+            Route::get('/edit/{id}', [StudentController::class, 'edit'])->name('admin.students.edit');
+            Route::post('/update', [StudentController::class, 'update'])->name('admin.students.update');
+            Route::get('/create', [StudentController::class, 'create'])->name('admin.students.create');
+            Route::post('/store', [StudentController::class, 'store'])->name('admin.students.store');
+            Route::get('/destroy/{id}', [StudentController::class, 'destroy'])->name('admin.students.destroy');
         });
     });
 });
+
