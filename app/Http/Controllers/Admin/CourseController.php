@@ -2,16 +2,18 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Cat;
 use App\Http\Controllers\Controller;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use App\Course;
+use App\Trainer;
 use Illuminate\Routing\Redirector;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\View\View;
-Use Image;
+use Image;
 
 class CourseController extends Controller
 {
@@ -22,7 +24,7 @@ class CourseController extends Controller
      */
     public function index()
     {
-        $data['courses'] = Course::all()->sortByDesc('id');
+        $data['courses'] = Course::select('id', 'name', 'price', 'small_desc', 'img')->orderBy('id', 'desc')->paginate(5);
         return view('admin.courses.index')->with($data);
     }
 
@@ -33,7 +35,9 @@ class CourseController extends Controller
      */
     public function create()
     {
-        return view('admin.courses.create');
+        $data['cats'] = Cat::select('id', 'name')->get();
+        $data['trainers'] = Trainer::select('id', 'name')->get();
+        return view('admin.courses.create')->with($data);
     }
 
     /**
@@ -46,12 +50,15 @@ class CourseController extends Controller
     {
         $data = $request->validate([
             'name' => 'required|string|max:50',
-            'spec' => 'required|string|max:50',
-            'phone' => 'nullable|string|max:20',
+            'small_desc' => 'required|string|max:191',
+            'price' => 'required|integer',
+            'desc' => 'required|string',
+            'cat_id' => 'required|exists:cats,id',
+            'trainer_id' => 'required|exists:trainers,id',
             'img' => 'required|image|mimes:png,jpeg,jpg'
         ]);
         $image = $data['img']->hashName();
-        Image::make($data['img'])->resize(70, 70)->save(public_path('uploads/trainers/' . $image));
+        Image::make($data['img'])->resize(950, 520)->save(public_path('uploads/courses/' . $image));
         $data['img'] = $image;
         Course::create($data);
         return redirect(route('admin.courses.index'));
@@ -77,8 +84,10 @@ class CourseController extends Controller
      */
     public function edit(int $id)
     {
-        $data['trainer'] = Course::findOrFail($id);
-        return view('admin.trainers.edit')->with($data);
+        $data['course'] = Course::findOrFail($id);
+        $data['cats'] = Cat::select('id', 'name')->get();
+        $data['trainers'] = Trainer::select('id', 'name')->get();
+        return view('admin.courses.edit')->with($data);
     }
 
 
@@ -93,22 +102,23 @@ class CourseController extends Controller
 
         $data = $request->validate([
             'name' => 'required|string|max:50',
-            'spec' => 'required|string|max:50',
-            'phone' => 'nullable|string|max:20',
+            'small_desc' => 'required|string|max:191',
+            'price' => 'required|integer',
+            'desc' => 'required|string',
+            'cat_id' => 'required|exists:cats,id',
+            'trainer_id' => 'required|exists:trainers,id',
             'img' => 'nullable|image|mimes:png,jpeg,jpg'
         ]);
 
         $oldImage = Course::findOrFail($request->id)->img;
-        if($request->hasFile('img')){
-            Storage::disk('uploads')->delete('trainers/'.$oldImage);
-
+        if ($request->hasFile('img')) {
+            Storage::disk('uploads')->delete('courses/' . $oldImage);
             $image = $data['img']->hashName();
-            Image::make($data['img'])->resize(70, 70)->save(public_path('uploads/trainers/' . $image));;
+            Image::make($data['img'])->resize(950, 520)->save(public_path('uploads/courses/' . $image));;
             $data['img'] = $image;
-        }else{
+        } else {
             $data['img'] = $oldImage;
         }
-
         Course::findOrFail($request->id)->update($data);
         return back();
     }
@@ -122,9 +132,8 @@ class CourseController extends Controller
     public function destroy(Request $request): RedirectResponse
     {
         $oldImage = Course::findOrFail($request->id)->img;
-        Storage::disk('uploads')->delete('trainers/'.$oldImage);
+        Storage::disk('uploads')->delete('courses/' . $oldImage);
         Course::findOrFail($request->id)->delete();
         return back();
     }
 }
-

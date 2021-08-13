@@ -1,6 +1,9 @@
 <?php
+
 namespace App\Http\Controllers\Front;
+
 namespace App\Http\Controllers\Admin;
+
 use App\Http\Controllers\Front\ContactController;
 use App\Http\Controllers\Front\CourseController;
 use App\Http\Controllers\Front\HomepageController;
@@ -67,6 +70,16 @@ Route::namespace('Admin')->prefix('dashboard')->group(function () {
             Route::get('/create', [\App\Http\Controllers\Admin\CourseController::class, 'create'])->name('admin.courses.create');
             Route::post('/store', [\App\Http\Controllers\Admin\CourseController::class, 'store'])->name('admin.courses.store');
             Route::get('/destroy/{id}', [\App\Http\Controllers\Admin\CourseController::class, 'destroy'])->name('admin.courses.destroy');
+        });
+
+        Route::prefix('students')->group(function () {
+            Route::get('/', [\App\Http\Controllers\Admin\StudentController::class, 'index'])->name('admin.students.index');
+            Route::get('/course/{id}', [\App\Http\Controllers\Admin\StudentController::class, 'show'])->name('admin.students.show');
+            Route::get('/edit/{id}', [\App\Http\Controllers\Admin\StudentController::class, 'edit'])->name('admin.students.edit');
+            Route::post('/update', [\App\Http\Controllers\Admin\StudentController::class, 'update'])->name('admin.students.update');
+            Route::get('/create', [\App\Http\Controllers\Admin\StudentController::class, 'create'])->name('admin.students.create');
+            Route::post('/store', [\App\Http\Controllers\Admin\StudentController::class, 'store'])->name('admin.students.store');
+            Route::get('/destroy/{id}', [\App\Http\Controllers\Admin\StudentController::class, 'destroy'])->name('admin.students.destroy');
         });
     });
 });

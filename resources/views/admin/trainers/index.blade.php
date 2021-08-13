@@ -13,8 +13,8 @@
                     <thead class="thead-light">
                         <tr>
                             <th scope="col">#</th>
-                            <th scope="col">Treainer image</th>
-                            <th scope="col">Treainer name</th>
+                            <th scope="col">Trainer image</th>
+                            <th scope="col">Trainer name</th>
                             <th scope="col">view</th>
                             <th scope="col">Edit</th>
                             <th scope="col">delete</th>

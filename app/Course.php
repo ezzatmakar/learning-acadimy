@@ -6,6 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
+/**
+ * @method static select(string $string, string $string1, string $string2, string $string3, string $string4)
+ */
 class Course extends Model
 {
     protected $guarded = ['id'];

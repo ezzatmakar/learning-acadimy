@@ -15,6 +15,7 @@
                             <th scope="col">#</th>
                             <th scope="col">Image</th>
                             <th scope="col">Name</th>
+                            <th scope="col">Price</th>
                             <th scope="col">Course pref</th>
                             <th scope="col">Actions</th>
 
@@ -31,6 +32,7 @@
                                 <td scope="row" style="width: 30%">
                                     <i>{{ $c->small_desc }}</i>
                                 </td>
+                                <td scope="row"><i>$ {{ $c->price }}</i></td>
                                 <td scope="row">
                                     <a href="{{ route('admin.courses.show', $c->id) }}"
                                        class="btn btn-outline-primary">view</a>
@@ -44,6 +46,9 @@
                         @endforeach
                     </tbody>
                 </table>
+                <div class="d-flex justify-content-center w-100 my-4">
+                    {!! $courses->render() !!}
+                </div>
             </div>
         </div>
     </div>
