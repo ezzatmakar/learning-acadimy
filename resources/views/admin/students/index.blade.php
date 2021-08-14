@@ -16,8 +16,8 @@
                         <th scope="col">Name</th>
                         <th scope="col">Email</th>
                         <th scope="col">Specialty</th>
+                        <th scope="col">courses count</th>
                         <th scope="col">Actions</th>
-
                     </tr>
                 </thead>
                 <tbody>
@@ -26,17 +26,19 @@
                             <td scope="row">{{ $loop->iteration }}</td>
                             <td scope="row">{{ $s->name }}</td>
                             <td scope="row">{{ $s->email }}</td>
-                            <td scope="row">{{ $s->spec }}</td>
-                            <td scope="row">
-                                @foreach ($s->courses as $course)
-                                    <p>{{ $course->name }}</p>
-                                @endforeach
-                            </td>
+                            @if ($s->spec !== null)
+                                <td scope="row">{{ $s->spec }}</td>
+                            @else
+                                <td scope="row">No speciality set</td>
+                            @endif
+                            <td scope="row">{{ count($s->courses) }}</td>
                             <td scope="row">
                                 <a href="{{ route('admin.students.edit', $s->id) }}"
                                     class="btn btn-outline-warning">Edit</a>
                                 <a href="{{ route('admin.students.destroy', $s->id) }}"
                                     class="btn btn-outline-danger ms-2">X</a>
+                                <a href="{{ route('admin.students.show', $s->id) }}"
+                                    class="btn btn-outline-primary ms-2">courses</a>
                             </td>
                         </tr>
                     @endforeach

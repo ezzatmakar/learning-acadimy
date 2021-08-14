@@ -3,9 +3,9 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Cat;
+use App\Student;
 use App\Trainer;
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
@@ -13,6 +13,7 @@ class HomeController extends Controller
     {
         $data['cats'] = Cat::all()->sortByDesc('id');
         $data['trainers'] = Trainer::all()->sortByDesc('id');
+        $data['students'] = Student::all()->sortByDesc('id');
         return view('admin.index')->with($data);
     }
 }

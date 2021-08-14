@@ -25,10 +25,10 @@
                     @endforeach
                 </select>
             </div>
-            <div class="col-12 py-2">
+            <div class="col-6 py-2">
                 <input type="text" name="name" class="form-control" placeholder="name" value="{{ $course->name }}">
             </div>
-            <div class="col-12 py-2">
+            <div class="col-6 py-2">
                 <input type="text" name="small_desc" class="form-control" placeholder="small desc"
                     value="{{ $course->small_desc }}">
             </div>

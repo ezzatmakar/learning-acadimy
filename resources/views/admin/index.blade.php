@@ -50,6 +50,24 @@
                             </div>
                         </div>
                     </div>
+
+                    <div class="col">
+                        <div class="card my-5">
+                            <h5 class="card-header">Students</h5>
+                            <div class="card-body">
+                                <h5 class="card-title">We have {{ count($students) }} students</h5>
+                                <div class="list-group">
+                                    <div class="ms-2 me-auto">
+                                        <div class="fw-bold"></div>
+                                    </div>
+
+                                </div>
+                                <a href="{{ route('admin.students.index') }}" class="btn btn-outline-primary mt-4">Go
+                                    students</a>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
             </div>
         </div>

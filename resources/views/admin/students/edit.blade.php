@@ -5,7 +5,7 @@
     <div style="height: 65vh">
         <div class="d-flex justify-content-between mb-3">
             <h6>{{ $student->name }}</h6>
-            <a href="{{ route('admin.cats.index') }}" class="btn btn-sm btn-primary">Back</a>
+            <a href="{{ route('admin.students.index') }}" class="btn btn-sm btn-primary">Back</a>
         </div>
         @include('admin.inc.errors')
         <form class="form-inline" method="POST" action="{{ route('admin.students.update') }}">
@@ -26,7 +26,7 @@
             <div class="form-group">
                 <label for="spec" class="sr-only my-2">specialty</label>
                 <div class="mb-2">
-                    <input type="text" value="{{ $student->spec }}" name="name" class="form-control">
+                    <input type="text" value="{{ $student->spec }}" name="spec" class="form-control">
                 </div>
             </div>
             <div class="form-group mb-2">

@@ -4,42 +4,45 @@
 
     <div style="height: 65vh;">
         <div class="d-flex justify-content-between mb-3">
-            <h6 class="cat-name">{{ $cat->name }}</h6>
+            <h6 class="cat-name">{{ $student->name }}</h6>
             <div class="actions">
-                <a href="{{ route('admin.cats.index') }}" class="btn btn-lg btn-primary">Back</a>
-                <a href="{{ route('admin.cats.edit', $cat->id) }}" class="btn btn-lg btn-outline-warning ms-3">Edit</a>
+                <a href="{{ route('admin.students.index') }}" class="btn btn-lg btn-primary">Back to students</a>
+                <a href="{{ route('admin.students.addCourse', $student->id) }}"
+                    class="btn btn-lg btn-outline-warning ms-3">Assign course</a>
             </div>
         </div>
 
         <div class="row">
             <div class="col-12">
-                @if (count($cat->courses) > 0)
-                    <table class="table table-hover">
-                        <thead>
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Course</th>
+                            <th scope="col">Status</th>
+                            <th scope="col">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach ($student->courses as $c)
                             <tr>
-                                <th scope="col">#</th>
-                                <th scope="col">Course name</th>
-                                <th scope="col">Students count</th>
-                                <th scope="col">Trainer name</th>
-                                <th scope="col">Trainer speciality</th>
+                                <td scope="row">{{ $loop->iteration }}</td>
+                                <td scope="row">{{ $c->name }}</td>
+                                <td scope="row">{{ $c->pivot->status }}</td>
+                                <td scope="row">
+                                    @if ($c->pivot->status !== 'approve')
+                                        <a href="{{ route('admin.students.approve', [$student->id, $c->id]) }}"
+                                            class="btn btn-outline-primary ms-2">Approve</a>
+                                    @endif
+                                    @if ($c->pivot->status !== 'reject')
+                                        <a href="{{ route('admin.students.reject', [$student->id, $c->id]) }}"
+                                            class="btn btn-outline-danger ms-2">Reject</a>
+                                    @endif
+                                </td>
                             </tr>
-                        </thead>
-                        <tbody>
-                            @foreach ($cat->courses as $course)
-                                <tr>
-                                    <th scope="row">{{ $loop->iteration }}</th>
-                                    <td>{{ $course->name }}</td>
-                                    <td>{{ count($course->students) }}</td>
-                                    <td>{{ $course->trainer->name }}</td>
-                                    <td>{{ $course->trainer->spec }}</td>
-                                </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
-                @else
-                    <p class="btn-outline-success">{{ $cat->name }} have no courses yet</p>
-                @endif
-
+                        @endforeach
+                    </tbody>
+                </table>
             </div>
         </div>
     </div>

@@ -2,9 +2,15 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Course;
 use App\Student;
 use App\Http\Controllers\Controller;
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\View\View;
 
 class StudentController extends Controller
 {
@@ -38,7 +44,9 @@ class StudentController extends Controller
     public function store(Request $request)
     {
         $data = $request->validate([
-            'name' => 'required|string|max:20'
+            'name' => 'nullable|string|max:50',
+            'email' => 'required|email|max:191|unique:students',
+            'spec' => 'nullable|string|max:50'
         ]);
 
         Student::create($data);
@@ -51,7 +59,7 @@ class StudentController extends Controller
      * @param  int id
      * @return Application|Factory|View
      */
-    public function show($cat_id)
+    public function show($student_id)
     {
         $data['student'] = Student::findOrFail($student_id);
         return view('admin.students.show')->with($data);
@@ -79,10 +87,22 @@ class StudentController extends Controller
     public function update(Request $request): RedirectResponse
     {
         $data = $request->validate([
-            'name' => 'required|string|max:20'
+            'name' => 'required|string|max:50',
+            'email' => 'required|email|max:191',
+            'spec' => 'nullable|string|max:50'
         ]);
 
-        Student::findOrFail($request->id)->update($data);
+        $old_student = Student::findOrFail($request->id);
+
+        if ($old_student->email === $data['email']) {
+            $old_student->update([
+                'name' => $data['name'],
+                'email' => $old_student->email,
+                'spec' => $data['spec']
+            ]);
+        }
+
+        $old_student->update($data);
         return back();
     }
 
@@ -96,5 +116,48 @@ class StudentController extends Controller
     {
         Student::findOrFail($request->id)->delete();
         return back();
+    }
+
+    public function approve($id, $course_id): RedirectResponse
+    {
+        DB::table('course_student')->where(['student_id' => $id, 'course_id' => $course_id])->update([
+            'status' => 'approve'
+        ]);
+
+        return back();
+    }
+
+    public function reject($id, $course_id): RedirectResponse
+    {
+        DB::table('course_student')->where(['student_id' => $id, 'course_id' => $course_id])->update([
+            'status' => 'reject'
+        ]);
+
+        return back();
+    }
+
+    public function addCourse($student_id)
+    {
+        $student = Student::findOrFail($student_id);
+        $data['student'] = $student;
+        $old_courses = [];
+        foreach ($student->courses as $c) {
+            $old_courses[] = $c->id;
+        }
+
+        $data['courses'] = Course::select('id', 'name')->whereNotIn('id', $old_courses)->get();
+        return view('admin.students.addCourse')->with($data);
+    }
+
+    public function storeCourse($id, Request $request){
+        $data = $request->validate([
+            'course_id' => 'required|exists:courses,id'
+        ]);
+        DB::table('course_student')->insert([
+            'student_id' => $id,
+            'course_id' => $data['course_id']
+        ]);
+
+        return redirect(route('admin.students.show', $id));
     }
 }
