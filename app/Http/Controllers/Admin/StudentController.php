@@ -21,7 +21,7 @@ class StudentController extends Controller
      */
     public function index()
     {
-        $data['students'] = Student::all()->sortByDesc('id');
+        $data['students'] = Student::select('id', 'name', 'email', 'spec')->paginate(10);
         return view('admin.students.index')->with($data);
     }
 
@@ -149,7 +149,8 @@ class StudentController extends Controller
         return view('admin.students.addCourse')->with($data);
     }
 
-    public function storeCourse($id, Request $request){
+    public function storeCourse($id, Request $request)
+    {
         $data = $request->validate([
             'course_id' => 'required|exists:courses,id'
         ]);

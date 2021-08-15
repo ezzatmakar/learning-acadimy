@@ -23,6 +23,7 @@
                 <tbody>
                     @foreach ($students as $s)
                         <tr>
+
                             <td scope="row">{{ $loop->iteration }}</td>
                             <td scope="row">{{ $s->name }}</td>
                             <td scope="row">{{ $s->email }}</td>
@@ -44,6 +45,9 @@
                     @endforeach
                 </tbody>
             </table>
+            <div class="d-flex justify-content-center w-100 my-4">
+                {!! $students->render() !!}
+            </div>
         </div>
     </div>
 @endsection
